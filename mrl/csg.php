@@ -26,6 +26,9 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
@@ -48,6 +51,7 @@
                 </button>
                 <a class="navbar-brand" href="home.php">Tech-Voc Online Grading</a>
             </div>
+
 
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -155,13 +159,13 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="csa.php"><i class="fa fa-fw fa-edit"></i> Create Students</a>
                     </li>
-                    <li>
+                    <li  class="active">
                         <a href="csg.php"><i class="fa fa-fw fa-table"></i> Semesters</a>
                     </li>
                     <li>
@@ -178,7 +182,7 @@
 
             <div class="container-fluid">
 
-                <h1>Hello Sir!</h1>
+                <h1>Semester Tables</h1>
                 <p>This is Tech-Voc Online Grading.</p>
                 <p>You Create your Students Account</p>
                 <p>You can Update, Drop, or Delete a Students.</p>

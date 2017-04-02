@@ -24,10 +24,13 @@ echo <<<OED
 	<input type="text" class="rounded" name="EMP_ID" placeholder="ID / USN" required />
 	<input type="password" class="rounded" name="PASS" placeholder="Password..." required /> <br />
 	<input type="submit" class="submit" name="submit" value="Enter" /><br />
+	<br />
+	<center>
+	<a href="ccode.php">Register (if you are a Prof)</a></center
 </div>
 <br />
 
-<a href="ccode.php">Register(if you are a Prof)</a>
+
 OED;
 
 	if(isset($_POST['submit'])){
@@ -37,7 +40,7 @@ OED;
 
 		$c_user = addslashes($_POST['EMP_ID']);
 		$c_pass =addslashes($_POST['PASS']);
-		$sel_c = "SELECT * from EMP_TAB where EMP_ID ='".$c_user."' AND PASS='".$c_pass."'";
+		$sel_c = "SELECT * from EMP_REG where EMP_ID ='".$c_user."' AND PASS='".$c_pass."'";
 		$run_c = oci_parse($c, $sel_c);
 		$ex = oci_execute($run_c);
 		$a = oci_fetch_array($run_c);

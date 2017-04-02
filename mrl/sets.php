@@ -26,6 +26,9 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
@@ -49,9 +52,10 @@
                 <a class="navbar-brand" href="home.php">Tech-Voc Online Grading</a>
             </div>
 
+       
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-            <!-- CUT
+             <!-- CUT 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
@@ -132,7 +136,9 @@
                         </li>
                     </ul>
                 </li>
-                END CUT -->
+            END CUT -->
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> USER <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -155,7 +161,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -164,7 +170,7 @@
                     <li>
                         <a href="csg.php"><i class="fa fa-fw fa-table"></i> Semesters</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="sets.php"><i class="fa fa-fw fa-wrench"></i> Settings</a>
                     </li>
                         </ul>
@@ -178,7 +184,7 @@
 
             <div class="container-fluid">
 
-                <h1>Hello Sir!</h1>
+                <h1>settings</h1>
                 <p>This is Tech-Voc Online Grading.</p>
                 <p>You Create your Students Account</p>
                 <p>You can Update, Drop, or Delete a Students.</p>

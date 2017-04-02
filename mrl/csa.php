@@ -5,8 +5,7 @@
 ?>
 <?php
 	include('dbinfo.inc.php');
-?>
-
+echo <<<EOD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +24,9 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -48,6 +50,7 @@
                 </button>
                 <a class="navbar-brand" href="home.php">Tech-Voc Online Grading</a>
             </div>
+
 
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -133,6 +136,7 @@
                     </ul>
                 </li>
                 END CUT -->
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> USER <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -155,10 +159,10 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
+                    <li  class="active">
                         <a href="csa.php"><i class="fa fa-fw fa-edit"></i> Create Students</a>
                     </li>
                     <li>
@@ -178,11 +182,54 @@
 
             <div class="container-fluid">
 
-                <h1>Hello Sir!</h1>
-                <p>This is Tech-Voc Online Grading.</p>
-                <p>You Create your Students Account</p>
-                <p>You can Update, Drop, or Delete a Students.</p>
-                <p>This website is user-friendly. its easy to use.</p>
+                <h1>Registration for Students</h1>
+
+<form action="#" method="post">	
+		<input  type="text" class="rounded" name="usn" placeholder="Student Number" required /><br />
+		<input type="text" class="rounded" name="fname" placeholder="FirstName" required />
+		<input  type="text" class="rounded" name="min" placeholder="MiddleName" required />
+		<input type="text" class="rounded" name="lname" placeholder="LastName" required /><br/>
+		<input  type="email" class="rounded" name="email" placeholder="Email" required /><br/>
+		<input type="date" class="rounded" name="bdate"  required /><br/>
+		<input type="text" class="rounded" name="course" placeholder="Course" required /><br/>
+		<input type="text" class="rounded" name="sec" placeholder="Section" required /><br/>
+		<select name="gender" required>
+  			<option value="Select Gender" selected disabled>Select Gender</option>
+  			<option value="Male">Male</option>
+  			<option value="Female">Female</option>
+		</select>
+		<input type="date" name="hdate" placeholder="Enrolled Date" required />
+		<input type="password" class="rounded" name="pass" placeholder="Password" required /><br/>
+	<input type="submit" name="Submit" value="Register" required />
+				</form>
+
+EOD;
+	if(!isset($_POST['Submit'])) {
+			//No codes to run
+		} else {
+			
+			$c = oci_pconnect(ORA_CON_UN, ORA_CON_PW, ORA_CON_DB);
+			$s = oci_parse($c, 'INSERT INTO students (usn, fname, min, lname, email, bdate, course, sec, gender, hdate, pass) 
+			VALUES (:usn, :fname, :min, :lname, :email, :bdate, :position, :sec, :gender, :hdate, :pass)');
+
+			oci_bind_by_name($s, ":usn" , $_POST['usn']);
+			oci_bind_by_name($s, ":fname" , $_POST['fname']);
+			oci_bind_by_name($s, ":min" , $_POST['min']);
+			oci_bind_by_name($s, ":lname" , $_POST['lname']);
+			oci_bind_by_name($s, ":email" , $_POST['email']);
+			oci_bind_by_name($s, ":bdate", $_POST['bdate']);
+			oci_bind_by_name($s, ":position" , $_POST['course']);
+			oci_bind_by_name($s, ":sec" , $_POST['sec']);
+			oci_bind_by_name($s, ":gender" , $_POST['gender']);
+			oci_bind_by_name($s, ":hdate" , $_POST['hdate']);
+			oci_bind_by_name($s, ":pass", $_POST['pass']);
+
+			oci_execute($s);
+
+			echo "<script>alert('Registration Success!')</script>";
+
+		} 
+		echo <<<EOD
 
             </div>
             <!-- /.container-fluid -->
@@ -208,3 +255,12 @@
 
 </html>
 
+
+
+
+
+
+</body>
+</html>
+EOD;
+?>
