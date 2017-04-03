@@ -19,15 +19,38 @@ echo <<<OED
 </head>
 <body background="img/cpu.jpg">
 
-<div>
-<form method="post" action="#">
-	<input type="text" class="rounded" name="EMP_ID" placeholder="ID / USN" required />
-	<input type="password" class="rounded" name="PASS" placeholder="Password..." required /> <br />
-	<input type="submit" class="submit" name="submit" value="Enter" /><br />
-</div>
-<br />
+<div class="container">
 
-<a href="ccode.php">Register(if you are a Prof)</a>
+        <div class="card card-container">
+    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+
+            <img id="profile-img" class="profile-img-card" src="img/no.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+
+            <form method="post" action="#" class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" name="EMP_ID" id="inputEmail" class="form-control" placeholder="Emp ID / USN" required autofocus>
+                <input type="password" name="PASS" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember Me!
+                    </label>
+                </div>
+                <button name="submit" class="btn btn-lg btn-success btn-block btn-signin" type="submit">Log In</button>
+            </form>
+            <!-- /form -->
+
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+
+        </div>
+        <!-- /card-container -->
+
+    </div>
+    <!-- /container -->
+
+
 OED;
 
 	if(isset($_POST['submit'])){
@@ -37,7 +60,7 @@ OED;
 
 		$c_user = addslashes($_POST['EMP_ID']);
 		$c_pass =addslashes($_POST['PASS']);
-		$sel_c = "SELECT * from EMP_TAB where EMP_ID ='".$c_user."' AND PASS='".$c_pass."'";
+		$sel_c = "SELECT * from EMP_REG where EMP_ID ='".$c_user."' AND PASS='".$c_pass."'";
 		$run_c = oci_parse($c, $sel_c);
 		$ex = oci_execute($run_c);
 		$a = oci_fetch_array($run_c);
