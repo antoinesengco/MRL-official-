@@ -13,7 +13,7 @@ echo <<<OED
 	<title>Confirmation Code</title>
 	 <link rel="stylesheet" type="text/css" href="css/ccode.css">
 </head>
-<body>
+<body background="img/cpu.jpg">
 		<div><form method="post" action="#">
 			<H1 style="text-align:center; color:white;">Confirmation Code</H1>
 			<input type="password" class="rounded" name="code" placeholder="Enter the Code">
