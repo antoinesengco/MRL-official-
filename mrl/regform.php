@@ -14,37 +14,52 @@ echo <<<EOD
 	<title>Online Registration</title>
 	<link href="css/reg.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body background="img/cpu.jpg">
 				
 	 
 <div>
 <h2>Sign up New Account</h2>
 	<form action="#" method="post">
 
+		<label style="margin-left: 35%;" > Employee ID: </label><br/>
+		<input style="width:50%; margin-left:20%;" type="text" class="rounded" name="emp_id" placeholder="Employee ID" required /><br/>
 	
-		<input style="width:450px; margin-left:170px;" type="text" class="rounded" name="emp_id" placeholder="Employee ID" required /><br />
-		<input type="text" class="rounded" name="fname" placeholder="FirstName" required />
-		<input style="width:50px;" type="text" class="rounded" name="min" placeholder="MiddleName" required />
-		<input type="text" class="rounded" name="lname" placeholder="LastName" required /><br/>
-		<input style="width:450px; margin-left:170px;" type="email" class="rounded" name="email" placeholder="Email" required /><br/>
-		<input type="date" class="rounded" name="bdate"  required /><br/>
-		<input type="text" class="rounded" name="position" placeholder="Position" required /><br/>
-		<input type="password" class="rounded" name="pass" placeholder="Password" required /><br/>
+		<label style="margin-left: 42%;"> FirstName: </label><br>
+		<input style="margin-left:27%;" type="text" class="rounded" name="fname" placeholder="FirstName" required /><br>
 
-	<input type="checkbox" value="accept" required /> I have read and understand this agreement<br/><br/>
-	<input type="submit" name="Submit" value="Register"/>
+		<label style="margin-left:40%;"> Middle Initial: </label><br/>
+		<input style="margin-left:39%; width:10%;" type="text" class="rounded" name="min" placeholder="M.I" required /><br/>
+
+		<label style="margin-left:42%;"> LastName: </label><br/>
+		<input style="margin-left:27%;" type="text" class="rounded" name="lname" placeholder="LastName" required />
+
+		<label style="margin-left:45%;"> Email: </label><br/>
+		<input style="width:40%; margin-left:25%;" type="email" class="rounded" name="email" placeholder="Email" required /><br/>
+
+		<label style="margin-left:43%;"> Birthdate: </label><br/>
+		<input style="margin-left:28%;" type="date" class="rounded" name="bdate"  required /><br/>
+
+		<label style="margin-left:43%;"> Position: </label><br/>
+		<input style="margin-left:27%;" type="text" class="rounded" name="position" placeholder="Position" required /><br/>
+
+		<label style="margin-left:42%;"> Password: </label><br/>
+		<input style="margin-left:27%;" type="password" class="rounded" name="pass" placeholder="Password" required /><br/>
+
+	<input type="checkbox" value="accept" required /> I have read and understand this <a href="#">agreement</a><br/><br/>
+	<input type="submit" name="Submit" value="Register" required/>
+	<input type="reset" value="Reset"/>
 				</form>
 
 					<a href="logout.php">Go Back to SignIn</a>
 
 EOD;
 	if(!isset($_POST['Submit'])) {
-			//No codes to run
-		} else {
-			
-			$c = oci_pconnect(ORA_CON_UN, ORA_CON_PW, ORA_CON_DB);
-			$s = oci_parse($c, 'INSERT INTO EMP_TAB (emp_id, fname, min, lname, email, bdate, position, pass) 
-			VALUES (:emp_id, :fname, :min, :lname, :email, :bdate, :position, :pass)');
+
+			} else {
+
+			$c = oci_connect(ORA_CON_UN, ORA_CON_PW, ORA_CON_DB);
+			$s = oci_parse($c, 'INSERT INTO EMP_TAB (id, emp_id, fname, min, lname, email, bdate, position, pass) 
+			VALUES (emp_users_sequence.nextval, :emp_id, :fname, :min, :lname, :email, :bdate, :position, :pass)');
 
 			oci_bind_by_name($s, ":emp_id" , $_POST['emp_id']);
 			oci_bind_by_name($s, ":fname" , $_POST['fname']);
@@ -57,9 +72,11 @@ EOD;
 
 			oci_execute($s);
 
-			echo "<script>alert('Registration Success!')</script>";
+			echo "<script>alert('Registration Successful!')</script>";
 
-		} 
+			//echo "<script>alert('Registration Unsuccessful!')</script>";
+			
+		}
 
 echo <<<EOD
 </body>

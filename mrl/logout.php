@@ -8,6 +8,13 @@ session_start();
 		header("Location: index.php");
 	}
 
+	if (isset($_SESSION['USN'])) {
+		session_destroy();
+		header("location: index.php");
+	}else {
+		header("location: index.php");
+	}
+
 	if (isset($_SESSION['code'])) {
 		session_destroy();
 		header("location: index.php");

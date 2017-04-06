@@ -25,7 +25,9 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-    
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -50,6 +52,7 @@
                 <a class="navbar-brand" href="home.php">Tech-Voc Online Grading</a>
             </div>
 
+       
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
@@ -71,7 +74,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -80,8 +83,8 @@
                     <li>
                         <a href="csg.php"><i class="fa fa-fw fa-table"></i> Semesters</a>
                     </li>
-                    <li>
-                        <a href="sets.php"><i class="fa fa-fw fa-wrench"></i> Students </a>
+                    <li class="active">
+                        <a href="sets.php"><i class="fa fa-fw fa-wrench"></i> Students</a>
                     </li>
                         </ul>
                     </li>
@@ -94,11 +97,29 @@
 
             <div class="container-fluid">
 
-                <h1>Hello Sir!</h1>
-                <p>This is Tech-Voc Online Grading.</p>
-                <p>You Create your Students Account</p>
-                <p>You can Update, Drop, or Delete a Students.</p>
-                <p>This website is user-friendly. its easy to use.</p>
+<h1>Students</h1>
+
+
+<?php
+$conn=oci_connect("techvoc",'mrl','//localhost/XE');
+
+do_query($conn,'SELECT SEC, USN, FNAME, LNAME, GENDER, COURSE  FROM STU');
+function do_query($conn,$query){
+$stid= oci_parse($conn,$query);
+$r= oci_execute($stid, OCI_DEFAULT);
+print'<table style="margin-left:10%;width:50%; border-collapse: collapse; text-align:center;" border="1" >';
+print '<tr><th>&nbsp;&nbsp;Section&nbsp;&nbsp;</th><th>&nbsp;&nbsp;USN&nbsp;&nbsp;</th><th>&nbsp;&nbsp;FirstName&nbsp;&nbsp;</th><th>&nbsp;&nbsp;LastName&nbsp;&nbsp;</th><th>&nbsp;&nbsp;Gender&nbsp;&nbsp;</th><th>&nbsp;&nbsp;Course&nbsp;&nbsp;</th></tr>';
+while ($row=oci_fetch_array($stid,OCI_ASSOC + OCI_RETURN_NULLS))
+{
+  print'<tr>';
+  foreach ($row as $item){
+    print'<td>'.'&nbsp;'.'&nbsp;'.'&nbsp;'.('&nbsp;' . '&nbsp;'. $item?htmlentities($item):'&nbsp;' . '&nbsp;').'&nbsp;'.'&nbsp;'.'&nbsp;'.'</td>';
+  }
+  print'<tr>';
+}
+print '<table>';
+}
+?>
 
             </div>
             <!-- /.container-fluid -->

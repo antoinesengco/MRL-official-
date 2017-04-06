@@ -1,0 +1,129 @@
+<!-- Sem 2 -->
+
+<!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sem 2</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Semester 2</h4>
+        </div>
+        <!--  Modal Body -->
+        <div class="modal-body">
+
+        <form post="" method="post">
+        <label>Subject Name:</label>
+            <input type="text" name="sub_name" required/><br>
+        <label>Subject Code</label>
+            <input type="text" name="sub_code" required/><br>
+        <label>Subject Descriptions</label>
+            <input type="text" name="sub_desc" required/><br>
+        <label>Subject Units</label>
+            <input type="text" name="sub_units" required/><br>
+            <input type="submit" name="Submit">
+        </form>
+
+        <?php
+
+        if(!isset($_POST['Submit'])) {
+
+            } else {
+
+            $c = oci_pconnect(ORA_CON_UN, ORA_CON_PW, ORA_CON_DB);
+            $s = oci_parse($c, 'INSERT INTO sem2 (sub_name, sub_code, sub_desc, sub_units) 
+            VALUES (:sub_name, :sub_code, :sub_desc, :sub_units)');
+
+            oci_bind_by_name($s, ":sub_name" , $_POST['sub_name']);
+            oci_bind_by_name($s, ":sub_code" , $_POST['sub_code']);
+            oci_bind_by_name($s, ":sub_desc" , $_POST['sub_desc']);
+            oci_bind_by_name($s, ":sub_units" , $_POST['sub_units']);
+
+            
+            oci_execute($s);
+
+            echo "<script>alert('Registration Successful!')</script>";
+
+            //echo "<script>alert('Registration Unsuccessful!')</script>";
+            
+        }
+
+        ?>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sem 3</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Semester 3</h4>
+        </div>
+        <!--  Modal Body -->
+        <div class="modal-body">
+
+        <form post="" method="post">
+        <label>Subject Name:</label>
+            <input type="text" name="sub_name" required/><br>
+        <label>Subject Code</label>
+            <input type="text" name="sub_code" required/><br>
+        <label>Subject Descriptions</label>
+            <input type="text" name="sub_desc" required/><br>
+        <label>Subject Units</label>
+            <input type="text" name="sub_units" required/><br>
+            <input type="submit" name="Submit">
+        </form>
+
+        <?php
+
+        if(!isset($_POST['Submit'])) {
+
+            } else {
+
+            $c = oci_pconnect(ORA_CON_UN, ORA_CON_PW, ORA_CON_DB);
+            $s = oci_parse($c, 'INSERT INTO sem3 (sub_name, sub_code, sub_desc, sub_units) 
+            VALUES (:sub_name, :sub_code, :sub_desc, :sub_units)');
+
+            oci_bind_by_name($s, ":sub_name" , $_POST['sub_name']);
+            oci_bind_by_name($s, ":sub_code" , $_POST['sub_code']);
+            oci_bind_by_name($s, ":sub_desc" , $_POST['sub_desc']);
+            oci_bind_by_name($s, ":sub_units" , $_POST['sub_units']);
+
+            
+            oci_execute($s);
+
+            echo "<script>alert('Registration Successful!')</script>";
+
+            //echo "<script>alert('Registration Unsuccessful!')</script>";
+            
+        }
+
+        ?>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div> -->
