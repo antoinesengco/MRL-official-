@@ -1,12 +1,14 @@
 div {
-	margin-top: 10px;
+	margin-top: 6%;
     background-color: #C7C7C7;
-    width: 890px;
+    width: 60%;
     border: 25px;
     border-style: solid;
     border-color: #1B85F6; 
     padding: 25px;
-    margin-left: 50px;
+    margin-left: 10%;
+    margin-bottom: 6%;
+    padding-left: 4%;
     box-shadow: 8px 8px 4px #666;
     transition: box-shadow 3.0s;
     border-radius: 25px;
@@ -22,9 +24,10 @@ input.rounded {
 	box-shadow: 6px 6px 3px #666;
 	font-size: 20px;
 	text-align: center;
-	width: 200px;
-	margin-top: 35px;
+	width: 35%;
+	margin-top: 15px;
 	margin-left: 55px;
+	margin-bottom: 20px;
 	padding-right:20px;
 	padding-left:20px;
 	outline: 0;
@@ -34,4 +37,9 @@ input.rounded {
 
 input.rounded:focus {
 	border-color: #2A82ED;
+}
+
+label {
+	font-size: 20px;
+
 }
