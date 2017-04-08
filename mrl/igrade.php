@@ -73,7 +73,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -98,7 +98,7 @@
                                 <a href="#4year.php">4th Year</a>
                             </li>
                         </ul>
-                         <li >
+                    <li class="active">
                         <a href="igrade.php"><i class="fa fa-fw fa-dashboard"></i> Insert Grades</a>
                     </li>
                     </li>
@@ -111,11 +111,33 @@
 
             <div class="container-fluid">
 
-                <h1>Hello Sir!</h1>
-                <p>This is Tech-Voc Online Grading.</p>
-                <p>You Create your Students Account</p>
-                <p>You can Update, Drop, or Delete a Students.</p>
-                <p>This website is user-friendly. its easy to use.</p>
+            <form action="" method="post">
+            <label>Insert USN: </label><br>
+            <input type="text" name="usn"><br>
+            <label>Insert Subject Code: </label><br>
+            <input type="text" name="sub_code"><br>
+            <label>Insert Grade: </label><br>
+            <input type="text" name="grades"><br>
+
+            <input type="submit" name="Submit">
+            </form>
+
+            <?php
+                if (isset($_POST['Submit'])) {
+            
+            $c = oci_connect(ORA_CON_UN, ORA_CON_PW, ORA_CON_DB);
+            $s = oci_parse($c, 'INSERT INTO grades (id, usn, sub_code, grades) 
+            VALUES (grades_sequence.nextval, :usn, :sub_code, :grades)');
+
+            oci_bind_by_name($s, ":usn" , $_POST['usn']);
+            oci_bind_by_name($s, ":sub_code" , $_POST['sub_code']);
+            oci_bind_by_name($s, ":grades" , $_POST['grades']);
+
+            echo "<script>alert('Registration Successful!')</script>";
+                } 
+
+
+            ?>
 
             </div>
             <!-- /.container-fluid -->
